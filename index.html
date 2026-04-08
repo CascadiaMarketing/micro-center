@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Micro Center — Your Passion, Our Parts</title>
+<link rel="icon" href="https://www.microcenter.com/favicon.ico">
+<link rel="shortcut icon" href="https://www.microcenter.com/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -146,27 +148,17 @@ section:last-of-type::after { display: none; }
   box-shadow: 0 2px 24px rgba(0,0,0,0.08);
 }
 .nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #1a1a2e;
-  letter-spacing: -0.5px;
   display: flex;
   align-items: center;
-  gap: 8px;
 }
-.nav-logo .logo-icon {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #0073DF, #0059AC);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
+.nav-logo img {
+  height: auto;
+  width: 150px;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.3));
+}
+.footer-brand .nav-logo img {
+  width: 120px;
+  opacity: 0.8;
 }
 .nav-links { display: flex; gap: 32px; align-items: center; list-style: none; }
 .nav-links a {
@@ -908,6 +900,7 @@ section:last-of-type::after { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 @media (max-width: 768px) {
+  .nav-logo img { width: 120px; }
   .menu-toggle { display: flex; }
   .nav-links {
     position: fixed;
@@ -950,10 +943,9 @@ section:last-of-type::after { display: none; }
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <div class="nav-logo">
-    <div class="logo-icon">M</div>
-    Micro Center
-  </div>
+  <a href="#" class="nav-logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Micro_Center_logo.svg/1200px-Micro_Center_logo.svg.png" alt="Micro Center">
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#categories">Shop</a></li>
     <li><a href="#deals">Deals</a></li>
@@ -1180,8 +1172,7 @@ section:last-of-type::after { display: none; }
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom: 4px;">
-          <div class="logo-icon">M</div>
-          Micro Center
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Micro_Center_logo.svg/1200px-Micro_Center_logo.svg.png" alt="Micro Center">
         </div>
         <p>America's #1 destination for computer and tech enthusiasts since 1979. 29 locations and counting.</p>
         <div class="footer-socials">
