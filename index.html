@@ -4,1510 +4,594 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Micro Center — Your Passion, Our Parts</title>
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="shortcut icon" href="favicon.png" type="image/png">
+<link rel="icon" href="https://www.microcenter.com/favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ===== RESET & BASE ===== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0a0a0a;
-  color: #f5f5f5;
-  line-height: 1.6;
-  font-size: 16px;
-  overflow-x: hidden;
-  position: relative;
-}
+/* ===== RESET ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#4a4a4a;line-height:1.6;font-size:16px;overflow-x:hidden}
+a{color:#0073DF;text-decoration:none;transition:color .2s}
+a:hover{color:#005bb5}
+img{max-width:100%;display:block}
+button{cursor:pointer;font-family:inherit}
+ul{list-style:none}
 
-/* ===== DOT PATTERN OVERLAY ===== */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-a { color: #0073DF; text-decoration: none; transition: color 0.3s; }
-a:hover { color: #4DA3FF; }
-img { max-width: 100%; display: block; }
+/* Dot grid overlay on white sections */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(0,0,0,.02) 1px,transparent 1px);background-size:24px 24px}
 
 /* ===== UTILITY ===== */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-  color: #f5f5f5;
-}
-.section-subtitle {
-  text-align: center;
-  color: #888888;
-  font-size: 1.05rem;
-  margin-bottom: 48px;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 400;
-}
-.accent { color: #0073DF; }
-.red { color: #CC0000; }
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:'Plus Jakarta Sans','Inter',sans-serif;color:#1a1a1a;letter-spacing:-.3px}
+h2.section-heading{font-size:clamp(1.6rem,3.5vw,2.25rem);font-weight:800;text-align:center;margin-bottom:8px}
+.section-sub{text-align:center;color:#6b7280;font-size:1rem;margin-bottom:48px;max-width:520px;margin-left:auto;margin-right:auto}
+.accent{color:#0073DF}
+.red{color:#CC0000}
 
-/* ===== SECTION TRANSITIONS ===== */
-section {
-  position: relative;
-  z-index: 1;
-}
-section::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-  pointer-events: none;
-  z-index: 0;
-}
-section:last-of-type::after { display: none; }
+/* Section dividers */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,#e5e7eb,transparent);margin:0 auto;max-width:80%}
 
-/* ===== FLOATING PC COMPONENTS ===== */
-.pc-components-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.pc-component {
-  position: absolute;
-  opacity: 0.06;
-  stroke: #0073DF;
-  fill: none;
-  stroke-width: 1.5;
-  animation: float-drift linear infinite;
-  will-change: transform;
-}
-@keyframes float-drift {
-  0% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-15px) rotate(3deg); }
-  50% { transform: translateY(-5px) rotate(-2deg); }
-  75% { transform: translateY(-20px) rotate(4deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-@keyframes spin-slow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+/* ===== FADE-IN ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
 
-/* ===== FADE-IN ANIMATION ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
+/* ===== 1. UTILITY BAR ===== */
+.utility-bar{background:#1a1a1a;color:#ccc;font-size:.78rem;padding:6px 0;position:relative;z-index:1001}
+.utility-bar .container{display:flex;justify-content:space-between;align-items:center}
+.utility-left{display:flex;align-items:center;gap:6px}
+.store-select{background:transparent;border:none;color:#ccc;font-size:.78rem;font-family:inherit;cursor:pointer;padding:2px 4px}
+.store-select option{background:#1a1a1a;color:#ccc}
+.utility-right{display:flex;align-items:center;gap:20px}
+.utility-right a{color:#ccc;font-size:.78rem;transition:color .2s}
+.utility-right a:hover{color:#fff}
+.cart-link{position:relative;display:flex;align-items:center;gap:4px}
+.cart-badge{background:#CC0000;color:#fff;font-size:.6rem;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-6px;right:-10px}
 
-/* ===== NAVBAR ===== */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0 24px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: background 0.3s, box-shadow 0.3s;
-}
-.navbar.scrolled {
-  background: rgba(10, 10, 10, 0.96);
-  box-shadow: 0 2px 24px rgba(0,0,0,0.4);
-}
-.nav-logo {
-  display: flex;
-  align-items: center;
-}
-.nav-logo img {
-  height: auto;
-  width: 150px;
-  filter: brightness(10) drop-shadow(0 1px 2px rgba(0,0,0,0.3));
-}
-.footer-brand .nav-logo img {
-  width: 120px;
-  opacity: 0.8;
-}
-.nav-links { display: flex; gap: 32px; align-items: center; list-style: none; }
-.nav-links a {
-  color: #888888;
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: color 0.3s;
-  position: relative;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #0073DF;
-  transition: width 0.3s;
-}
-.nav-links a:hover { color: #f5f5f5; }
-.nav-links a:hover::after { width: 100%; }
-.nav-cta {
-  background: #0073DF;
-  color: #fff !important;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-}
-.nav-cta::after { display: none !important; }
-.nav-cta:hover {
-  background: #0059AC;
-  color: #fff !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0,115,223,0.3);
-}
+/* ===== 2. MAIN NAV ===== */
+.main-nav{background:#0073DF;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,.15);transition:box-shadow .3s}
+.main-nav .container{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.nav-logo img{height:28px;width:auto;filter:brightness(0) invert(1)}
+.nav-center{display:flex;gap:4px;align-items:center}
+.nav-center a{color:rgba(255,255,255,.9);font-size:.85rem;font-weight:600;padding:8px 14px;border-radius:6px;transition:background .2s,color .2s;position:relative}
+.nav-center a:hover{background:rgba(255,255,255,.15);color:#fff}
+.nav-center a::after{content:'';position:absolute;bottom:4px;left:50%;width:0;height:2px;background:#fff;transition:width .25s,left .25s;border-radius:1px}
+.nav-center a:hover::after{width:60%;left:20%}
+.nav-search{display:flex;align-items:center;background:rgba(255,255,255,.15);border-radius:8px;padding:0 12px;transition:background .2s}
+.nav-search:focus-within{background:rgba(255,255,255,.25)}
+.nav-search input{background:none;border:none;color:#fff;font-size:.85rem;padding:8px 8px 8px 0;width:180px;outline:none;font-family:inherit}
+.nav-search input::placeholder{color:rgba(255,255,255,.6)}
+.nav-search svg{flex-shrink:0}
+.hamburger{display:none;background:none;border:none;padding:4px;flex-direction:column;gap:5px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-/* Mobile menu toggle */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 4px;
-}
-.menu-toggle span {
-  width: 24px;
-  height: 2px;
-  background: #f5f5f5;
-  border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+/* ===== 3. EXPLODING PC HERO ===== */
+.explode-wrapper{height:300vh;position:relative;z-index:1}
+.explode-hero{position:sticky;top:0;height:100vh;width:100%;display:flex;align-items:center;justify-content:center;background:#0a0a0a;overflow:hidden}
+.explode-scene{position:relative;width:680px;height:480px;perspective:1200px;transform-style:preserve-3d}
+.explode-part{position:absolute;will-change:transform,opacity;filter:drop-shadow(0 4px 24px rgba(0,115,223,.15))}
+.explode-part svg{width:100%;height:100%}
+.explode-label{position:absolute;opacity:0;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:600;color:#fff;letter-spacing:.3px;pointer-events:none;will-change:opacity;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.explode-label .spec{color:#0073DF;font-family:'Inter',sans-serif;font-weight:500;font-size:.72rem}
+.hero-bottom-cta{position:absolute;bottom:48px;left:0;right:0;text-align:center;z-index:10;opacity:0;transition:opacity .5s;pointer-events:none}
+.hero-bottom-cta.show{opacity:1;pointer-events:auto}
+.hero-bottom-cta h2{font-family:'Plus Jakarta Sans',sans-serif;color:#fff;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:16px}
+.hero-bottom-cta .btn-white{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;background:#fff;color:#0073DF;font-weight:700;font-size:.95rem;border-radius:10px;border:none;transition:transform .2s,box-shadow .2s}
+.hero-bottom-cta .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,115,223,.3)}
+.scroll-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:10;color:rgba(255,255,255,.35);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:2px;animation:bob 2s ease-in-out infinite}
+.scroll-hint::after{content:'';display:block;width:1px;height:28px;background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);margin:8px auto 0}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 
-/* ===== EXPLODING PC HERO ===== */
-.explode-hero-wrapper {
-  height: 300vh;
-  position: relative;
-}
-.explode-hero {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #0a0a0a;
-  z-index: 2;
-}
-.explode-scene {
-  position: relative;
-  width: 700px;
-  height: 500px;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-}
-.explode-part {
-  position: absolute;
-  transition: none;
-  will-change: transform, opacity;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.6));
-}
-.explode-part svg {
-  width: 100%;
-  height: 100%;
-}
-.explode-label {
-  position: absolute;
-  opacity: 0;
-  white-space: nowrap;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #f5f5f5;
-  letter-spacing: 0.5px;
-  pointer-events: none;
-  will-change: opacity;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-}
-.explode-label .spec {
-  color: #0073DF;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 0.75rem;
-}
+/* ===== 4. CATEGORIES ===== */
+.categories{padding:80px 0;position:relative;z-index:1;background:#fff}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:32px 24px;text-align:center;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s;cursor:pointer}
+.cat-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,.08);border-color:#0073DF}
+.cat-icon{font-size:2.2rem;margin-bottom:14px;display:block}
+.cat-card h3{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+.cat-card p{font-size:.85rem;color:#6b7280}
+.cat-card .arrow{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#f0f7ff;color:#0073DF;font-size:.85rem;margin-top:14px;transition:background .2s,color .2s,transform .2s}
+.cat-card:hover .arrow{background:#0073DF;color:#fff;transform:translateX(3px)}
 
-/* Hero overlay text */
-.hero-overlay {
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 10;
-  pointer-events: none;
-}
-.hero-overlay .hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0,115,223,0.1);
-  border: 1px solid rgba(0,115,223,0.2);
-  padding: 8px 20px;
-  border-radius: 50px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #0073DF;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-}
-.hero-overlay .hero-badge .pulse {
-  width: 8px;
-  height: 8px;
-  background: #0073DF;
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0,115,223,0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(0,115,223,0); }
-}
-.hero-overlay h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: -1.5px;
-  color: #f5f5f5;
-  margin-bottom: 16px;
-}
-.hero-overlay h1 .gradient-text {
-  background: linear-gradient(135deg, #0073DF 0%, #4DA3FF 50%, #0073DF 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-@keyframes shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-.hero-overlay p {
-  font-size: 1rem;
-  color: #888888;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.scroll-hint {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  text-align: center;
-  color: #555;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  animation: bounce-hint 2s ease-in-out infinite;
-}
-.scroll-hint::after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 30px;
-  background: linear-gradient(to bottom, #555, transparent);
-  margin: 8px auto 0;
-}
-@keyframes bounce-hint {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
-}
+/* ===== 5. DEALS ===== */
+.deals{padding:80px 0;background:#f9fafb;position:relative;z-index:1}
+.deals-header{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
+.hot-badge{background:#CC0000;color:#fff;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.5px}
+.deals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.deal-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+.deal-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+.deal-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.deal-img.gpu-bg{background:linear-gradient(135deg,#eef4ff,#dbeafe)}
+.deal-img.cpu-bg{background:linear-gradient(135deg,#fef3f2,#fde8e8)}
+.deal-img.monitor-bg{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
+.deal-img.laptop-bg{background:linear-gradient(135deg,#faf5ff,#f3e8ff)}
+.deal-save{position:absolute;top:10px;left:10px;background:#16a34a;color:#fff;font-size:.68rem;font-weight:700;padding:4px 8px;border-radius:6px}
+.deal-info{padding:16px 18px 20px}
+.deal-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:700;color:#1a1a1a;margin-bottom:8px;line-height:1.35}
+.deal-stars{display:flex;align-items:center;gap:4px;margin-bottom:10px;font-size:.75rem;color:#f59e0b}
+.deal-stars .count{color:#6b7280;font-size:.72rem}
+.deal-pricing{display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
+.deal-price{font-size:1.3rem;font-weight:800;color:#CC0000}
+.deal-original{font-size:.82rem;color:#9ca3af;text-decoration:line-through}
+.deal-btn{width:100%;padding:10px;background:#0073DF;color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.82rem;transition:background .2s,transform .15s}
+.deal-btn:hover{background:#005bb5;transform:translateY(-1px)}
 
-/* ===== STATS BAR ===== */
-.stats-bar {
-  padding: 60px 0;
-  background: #111111;
-  position: relative;
-  z-index: 1;
-}
-.stats-grid {
-  display: flex;
-  gap: 48px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.hero-stat { text-align: center; }
-.hero-stat .number {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #f5f5f5;
-  letter-spacing: -0.5px;
-}
-.hero-stat .label {
-  font-size: 0.8rem;
-  color: #888888;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 4px;
-  font-weight: 500;
-}
+/* ===== 6. PC BUILDER CTA ===== */
+.builder-cta{padding:80px 0;position:relative;z-index:1;background:#fff}
+.builder-banner{background:linear-gradient(135deg,#0073DF 0%,#004a8f 100%);border-radius:20px;padding:64px 48px;display:flex;align-items:center;justify-content:space-between;gap:48px;overflow:hidden;position:relative}
+.builder-text{max-width:500px;position:relative;z-index:1}
+.builder-text h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:14px}
+.builder-text p{color:rgba(255,255,255,.8);font-size:1rem;line-height:1.7;margin-bottom:28px}
+.builder-text .btn-white{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#fff;color:#0073DF;font-weight:700;font-size:.92rem;border-radius:10px;border:none;transition:transform .2s,box-shadow .2s}
+.builder-text .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.builder-graphic{position:relative;z-index:1;flex-shrink:0;opacity:.9}
 
-/* ===== CATEGORIES ===== */
-.categories { padding: 100px 0; position: relative; background: #0a0a0a; }
-.cat-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.cat-card {
-  background: #111111;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 36px 28px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-}
-.cat-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,115,223,0.05) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-.cat-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(0,115,223,0.3);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  background: #1a1a1a;
-}
-.cat-card:hover::before { opacity: 1; }
-.cat-icon {
-  font-size: 2.4rem;
-  margin-bottom: 16px;
-  display: block;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.cat-card:hover .cat-icon { transform: scale(1.15); }
-.cat-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #f5f5f5;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
-}
-.cat-card p {
-  font-size: 0.85rem;
-  color: #888888;
-  position: relative;
-  z-index: 1;
-}
-.cat-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(0,115,223,0.1);
-  color: #0073DF;
-  margin-top: 16px;
-  font-size: 0.9rem;
-  position: relative;
-  z-index: 1;
-  transition: all 0.3s;
-}
-.cat-card:hover .cat-arrow {
-  background: #0073DF;
-  color: #fff;
-  transform: translateX(4px);
-}
+/* ===== 7. SERVICES ===== */
+.services{padding:80px 0;background:#f9fafb;position:relative;z-index:1}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:36px 28px;text-align:center;transition:transform .3s,box-shadow .3s}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.service-icon{font-size:2rem;margin-bottom:14px;display:block}
+.service-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.service-card p{font-size:.85rem;color:#6b7280;line-height:1.6}
 
-/* ===== DEALS ===== */
-.deals { padding: 100px 0; position: relative; background: #111111; }
-.deals-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-.deal-card {
-  background: #1a1a1a;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-.deal-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(0,115,223,0.3);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-}
-.deal-image {
-  height: 180px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  position: relative;
-  overflow: hidden;
-}
-.deal-image::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(to top, #1a1a1a, transparent);
-}
-.deal-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: #CC0000;
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 5px 10px;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
-  z-index: 1;
-}
-.deal-info { padding: 20px; }
-.deal-brand {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #0073DF;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.deal-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #f5f5f5;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-.deal-pricing {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-.deal-price {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #f5f5f5;
-}
-.deal-original {
-  font-size: 0.85rem;
-  color: #666666;
-  text-decoration: line-through;
-}
-.deal-btn {
-  width: 100%;
-  padding: 12px;
-  background: rgba(0,115,223,0.1);
-  border: 1px solid rgba(0,115,223,0.2);
-  color: #0073DF;
-  font-weight: 700;
-  font-size: 0.85rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.deal-btn:hover {
-  background: #0073DF;
-  border-color: #0073DF;
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(0,115,223,0.25);
-}
+/* ===== 8. STORE LOCATOR ===== */
+.store-locator{padding:80px 0;background:#fff;position:relative;z-index:1;text-align:center}
+.store-locator .pin-icon{font-size:3rem;margin-bottom:16px;display:block}
+.store-locator h2{margin-bottom:8px}
+.store-locator .sub{color:#6b7280;font-size:1rem;margin-bottom:28px}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#0073DF;color:#fff;font-weight:700;font-size:.92rem;border-radius:10px;border:none;transition:background .2s,transform .15s,box-shadow .2s}
+.btn-blue:hover{background:#005bb5;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,115,223,.25)}
 
-/* ===== WHY MICRO CENTER ===== */
-.why { padding: 100px 0; position: relative; background: #0a0a0a; }
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.why-card {
-  background: #111111;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 40px 32px;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.why-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.1);
-  background: #1a1a1a;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-}
-.why-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  margin: 0 auto 20px;
-  transition: transform 0.4s;
-}
-.why-card:hover .why-icon { transform: scale(1.1); }
-.why-icon.blue { background: rgba(0,115,223,0.1); }
-.why-icon.red { background: rgba(204,0,0,0.1); }
-.why-icon.green { background: rgba(0,200,120,0.1); }
-.why-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #f5f5f5;
-  margin-bottom: 12px;
-}
-.why-card p {
-  font-size: 0.9rem;
-  color: #888888;
-  line-height: 1.7;
-}
-
-/* ===== CUSTOM PC BUILDER CTA ===== */
-.builder-cta {
-  padding: 100px 0;
-  position: relative;
-  background: #111111;
-}
-.builder-banner {
-  background: linear-gradient(135deg, #1a1a1a 0%, #111111 50%, #1a1a1a 100%);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 24px;
-  padding: 72px 48px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.builder-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 50% 80% at 20% 50%, rgba(0,115,223,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 80% 50%, rgba(204,0,0,0.02) 0%, transparent 60%);
-}
-.builder-banner > * { position: relative; z-index: 1; }
-.builder-icon {
-  font-size: 3rem;
-  margin-bottom: 24px;
-  display: block;
-}
-.builder-banner h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  font-weight: 800;
-  color: #f5f5f5;
-  margin-bottom: 16px;
-  letter-spacing: -0.5px;
-}
-.builder-banner p {
-  font-size: 1.05rem;
-  color: #888888;
-  max-width: 520px;
-  margin: 0 auto 36px;
-  line-height: 1.7;
-}
-.builder-features {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-  margin-bottom: 36px;
-  flex-wrap: wrap;
-}
-.builder-feature {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.88rem;
-  color: #888888;
-}
-.builder-feature .check {
-  color: #0073DF;
-  font-weight: 700;
-}
-
-/* ===== NEWSLETTER ===== */
-.newsletter {
-  padding: 100px 0;
-  position: relative;
-  background: #0a0a0a;
-}
-.newsletter-box {
-  max-width: 560px;
-  margin: 0 auto;
-  text-align: center;
-}
-.newsletter-box h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #f5f5f5;
-  margin-bottom: 12px;
-}
-.newsletter-box p {
-  color: #888888;
-  margin-bottom: 32px;
-  font-size: 0.95rem;
-}
-.newsletter-form {
-  display: flex;
-  gap: 12px;
-  max-width: 480px;
-  margin: 0 auto;
-}
-.newsletter-form input {
-  flex: 1;
-  padding: 14px 20px;
-  background: #111111;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  color: #f5f5f5;
-  font-size: 0.92rem;
-  font-family: 'Inter', sans-serif;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.newsletter-form input::placeholder { color: #666666; }
-.newsletter-form input:focus {
-  border-color: rgba(0,115,223,0.5);
-  box-shadow: 0 0 0 3px rgba(0,115,223,0.1);
-}
-.newsletter-form button {
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #0073DF, #0059AC);
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 0.92rem;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s;
-  white-space: nowrap;
-}
-.newsletter-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,115,223,0.3);
-}
-.newsletter-note {
-  font-size: 0.75rem;
-  color: #666666;
-  margin-top: 16px;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  padding: 64px 0 32px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  background: #111111;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 48px;
-}
-.footer-brand p {
-  color: #666666;
-  font-size: 0.85rem;
-  margin-top: 12px;
-  line-height: 1.7;
-  max-width: 280px;
-}
-.footer-socials {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-}
-.social-link {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: #1a1a1a;
-  border: 1px solid rgba(255,255,255,0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  color: #888888;
-  transition: all 0.3s;
-  cursor: pointer;
-  text-decoration: none;
-}
-.social-link:hover {
-  background: rgba(0,115,223,0.1);
-  border-color: rgba(0,115,223,0.2);
-  color: #0073DF;
-  transform: translateY(-2px);
-}
-.footer-col h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #f5f5f5;
-  margin-bottom: 16px;
-}
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 10px; }
-.footer-col a {
-  font-size: 0.88rem;
-  color: #888888;
-  transition: color 0.3s;
-}
-.footer-col a:hover { color: #0073DF; }
-.footer-bottom {
-  padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.footer-bottom p {
-  font-size: 0.8rem;
-  color: #666666;
-}
-.footer-bottom-links {
-  display: flex;
-  gap: 24px;
-}
-.footer-bottom-links a {
-  font-size: 0.8rem;
-  color: #666666;
-}
-.footer-bottom-links a:hover { color: #888888; }
-
-/* ===== BUTTONS (DARK THEME) ===== */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: 'Inter', sans-serif;
-  text-decoration: none;
-}
-.btn-primary {
-  background: linear-gradient(135deg, #0073DF, #0059AC);
-  color: #fff;
-  box-shadow: 0 4px 24px rgba(0,115,223,0.2);
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0,115,223,0.3);
-  color: #fff;
-}
-.btn-primary:active { transform: translateY(0); }
-.btn-secondary {
-  background: #1a1a1a;
-  color: #f5f5f5;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.btn-secondary:hover {
-  background: #222222;
-  border-color: rgba(255,255,255,0.15);
-  transform: translateY(-2px);
-  color: #f5f5f5;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-}
+/* ===== 9. FOOTER ===== */
+.footer{background:#002244;color:rgba(255,255,255,.7);padding:56px 0 0;position:relative;z-index:1}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand img{height:24px;filter:brightness(0) invert(1);margin-bottom:14px}
+.footer-brand p{font-size:.82rem;line-height:1.7;color:rgba(255,255,255,.5);max-width:260px}
+.footer-col h4{font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:14px}
+.footer-col li{margin-bottom:8px}
+.footer-col a{color:rgba(255,255,255,.55);font-size:.82rem;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-socials{display:flex;gap:10px;margin-top:16px}
+.social-icon{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:.8rem;transition:background .2s,color .2s}
+.social-icon:hover{background:rgba(255,255,255,.15);color:#fff}
+.footer-bottom{padding:20px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:.72rem;color:rgba(255,255,255,.35)}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{font-size:.72rem;color:rgba(255,255,255,.35)}
+.footer-bottom-links a:hover{color:rgba(255,255,255,.6)}
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .deals-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .explode-scene { width: 500px; height: 360px; }
+@media(max-width:1024px){
+  .deals-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .builder-banner{flex-direction:column;text-align:center;padding:48px 32px}
+  .builder-text{max-width:100%}
+  .builder-graphic{display:none}
+  .explode-scene{width:480px;height:360px}
 }
-@media (max-width: 768px) {
-  .nav-logo img { width: 120px; }
-  .menu-toggle { display: flex; }
-  .nav-links {
-    position: fixed;
-    top: 64px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .nav-links.open { transform: translateX(0); }
-  .nav-links a { font-size: 1.1rem; color: #f5f5f5; }
-  .cat-grid { grid-template-columns: repeat(2, 1fr); }
-  .deals-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-  .why-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-  .stats-grid { gap: 24px; }
-  .builder-banner { padding: 48px 24px; }
-  .builder-features { flex-direction: column; align-items: center; gap: 12px; }
-  .newsletter-form { flex-direction: column; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-  .pc-components-layer { display: none; }
-  .explode-scene { width: 340px; height: 280px; }
-  .explode-hero-wrapper { height: 200vh; }
-  .explode-label { font-size: 0.7rem; }
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-center,.nav-search{display:none}
+  .nav-center.open{display:flex;position:absolute;top:56px;left:0;right:0;background:#0073DF;flex-direction:column;padding:16px;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .nav-search.open{display:flex;position:absolute;top:56px;left:0;right:0;background:#0073DF;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .nav-search.open input{width:100%}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .deals-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}
+  .services-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .explode-scene{width:320px;height:260px}
+  .explode-wrapper{height:200vh}
+  .explode-label{font-size:.65rem}
+  .utility-bar .container{flex-direction:column;gap:4px;text-align:center}
+  .utility-right{justify-content:center}
 }
-@media (max-width: 480px) {
-  .cat-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
-  .stats-grid { flex-direction: column; gap: 16px; }
+@media(max-width:480px){
+  .cat-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}
 }
 </style>
 </head>
 <body>
 
-<!-- FLOATING PC COMPONENT SVGs -->
-<div class="pc-components-layer" id="pcComponents"></div>
+<!-- ===== 1. UTILITY BAR ===== -->
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-left">
+      <span>📍</span>
+      <select class="store-select" aria-label="Select store">
+        <option>Find a Store Near You</option>
+        <option>Tustin, CA</option>
+        <option>Dallas, TX</option>
+        <option>Columbus, OH</option>
+        <option>Houston, TX</option>
+        <option>Denver, CO</option>
+      </select>
+    </div>
+    <div class="utility-right">
+      <a href="#">Sign In / Create Account</a>
+      <a href="#" class="cart-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Cart
+        <span class="cart-badge">3</span>
+      </a>
+    </div>
+  </div>
+</div>
 
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
-  <a href="#" class="nav-logo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Micro_Center_logo.svg/500px-Micro_Center_logo.svg.png" alt="Micro Center">
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#categories">Shop</a></li>
-    <li><a href="#deals">Deals</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#builder">Build</a></li>
-    <li><a href="#deals" class="nav-cta">Shop Now</a></li>
-  </ul>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
+<!-- ===== 2. MAIN NAV ===== -->
+<nav class="main-nav" id="mainNav">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Micro_Center_logo.svg/1200px-Micro_Center_logo.svg.png" alt="Micro Center">
+    </a>
+    <div class="nav-center" id="navCenter">
+      <a href="#categories">Computers</a>
+      <a href="#categories">PC Parts</a>
+      <a href="#">Networking</a>
+      <a href="#">Software</a>
+      <a href="#services">Services</a>
+      <a href="#deals">Deals</a>
+    </div>
+    <div class="nav-search" id="navSearch">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search products...">
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- EXPLODING PC HERO -->
-<div class="explode-hero-wrapper" id="explodeWrapper">
+<!-- ===== 3. EXPLODING PC HERO ===== -->
+<div class="explode-wrapper" id="explodeWrapper">
   <section class="explode-hero" id="explodeHero">
     <div class="explode-scene" id="explodeScene">
 
-      <!-- PC CASE (center) -->
-      <div class="explode-part" id="part-case" style="left:50%;top:50%;width:220px;height:320px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 220 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="caseGrad" x1="0" y1="0" x2="220" y2="320" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1a1a2e"/>
-              <stop offset="100%" stop-color="#2a2a3e"/>
-            </linearGradient>
-          </defs>
-          <rect x="4" y="4" width="212" height="312" rx="10" fill="url(#caseGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <rect x="16" y="16" width="188" height="200" rx="6" fill="none" stroke="#333" stroke-width="1"/>
-          <!-- Front panel -->
-          <rect x="16" y="230" width="188" height="70" rx="6" fill="none" stroke="#333" stroke-width="1"/>
-          <!-- Power button -->
-          <circle cx="110" cy="250" r="8" fill="none" stroke="#0073DF" stroke-width="1.5"/>
-          <circle cx="110" cy="250" r="3" fill="#0073DF" opacity="0.5"/>
-          <!-- USB ports -->
-          <rect x="80" y="268" width="14" height="6" rx="2" fill="none" stroke="#444" stroke-width="1"/>
-          <rect x="98" y="268" width="14" height="6" rx="2" fill="none" stroke="#444" stroke-width="1"/>
-          <rect x="116" y="268" width="14" height="6" rx="2" fill="none" stroke="#444" stroke-width="1"/>
-          <!-- Drive bays -->
-          <rect x="24" y="24" width="172" height="24" rx="3" fill="none" stroke="#333" stroke-width="1"/>
-          <rect x="24" y="54" width="172" height="24" rx="3" fill="none" stroke="#333" stroke-width="1"/>
-          <!-- Vents -->
-          <line x1="24" y1="90" x2="196" y2="90" stroke="#222" stroke-width="0.5"/>
-          <line x1="24" y1="96" x2="196" y2="96" stroke="#222" stroke-width="0.5"/>
-          <line x1="24" y1="102" x2="196" y2="102" stroke="#222" stroke-width="0.5"/>
-          <!-- Side window -->
-          <rect x="30" y="110" width="160" height="100" rx="4" fill="none" stroke="#0073DF" stroke-width="0.5" opacity="0.3"/>
+      <!-- PC CASE -->
+      <div class="explode-part" id="part-case" style="left:50%;top:50%;width:200px;height:300px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 200 300" fill="none">
+          <defs><linearGradient id="gc" x1="0" y1="0" x2="200" y2="300" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#2a2a3e"/></linearGradient></defs>
+          <rect x="4" y="4" width="192" height="292" rx="8" fill="url(#gc)" stroke="#0073DF" stroke-width="1.5"/>
+          <rect x="14" y="14" width="172" height="190" rx="4" fill="none" stroke="#3a3a4e" stroke-width=".8"/>
+          <rect x="14" y="216" width="172" height="68" rx="4" fill="none" stroke="#3a3a4e" stroke-width=".8"/>
+          <circle cx="100" cy="236" r="7" fill="none" stroke="#0073DF" stroke-width="1.2"/><circle cx="100" cy="236" r="2.5" fill="#0073DF" opacity=".4"/>
+          <rect x="76" y="254" width="12" height="5" rx="1.5" fill="none" stroke="#555" stroke-width=".7"/>
+          <rect x="94" y="254" width="12" height="5" rx="1.5" fill="none" stroke="#555" stroke-width=".7"/>
+          <rect x="112" y="254" width="12" height="5" rx="1.5" fill="none" stroke="#555" stroke-width=".7"/>
+          <rect x="22" y="22" width="156" height="20" rx="2" fill="none" stroke="#3a3a4e" stroke-width=".6"/>
+          <rect x="22" y="48" width="156" height="20" rx="2" fill="none" stroke="#3a3a4e" stroke-width=".6"/>
+          <line x1="22" y1="78" x2="178" y2="78" stroke="#2a2a3e" stroke-width=".4"/>
+          <line x1="22" y1="84" x2="178" y2="84" stroke="#2a2a3e" stroke-width=".4"/>
+          <line x1="22" y1="90" x2="178" y2="90" stroke="#2a2a3e" stroke-width=".4"/>
+          <rect x="28" y="100" width="144" height="90" rx="3" fill="none" stroke="#0073DF" stroke-width=".4" opacity=".25"/>
         </svg>
-        <div class="explode-label" style="left:240px;top:50%;transform:translateY(-50%)">GAMING PC <span class="spec">— Custom Build</span></div>
       </div>
 
-      <!-- GPU (slides left) -->
-      <div class="explode-part" id="part-gpu" style="left:50%;top:50%;width:200px;height:90px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="gpuGrad" x1="0" y1="0" x2="200" y2="90" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1a1a2e"/>
-              <stop offset="100%" stop-color="#2a2a3e"/>
-            </linearGradient>
-          </defs>
-          <rect x="3" y="3" width="194" height="70" rx="6" fill="url(#gpuGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <!-- Fans -->
-          <circle cx="50" cy="38" r="22" fill="none" stroke="#333" stroke-width="1"/>
-          <circle cx="50" cy="38" r="8" fill="none" stroke="#444" stroke-width="0.8"/>
-          <circle cx="50" cy="38" r="3" fill="#0073DF" opacity="0.3"/>
-          <path d="M50 16 C44 24,38 28,42 38 C46 48,54 48,58 38 C62 28,56 24,50 16Z" fill="none" stroke="#444" stroke-width="0.5"/>
-          <circle cx="130" cy="38" r="22" fill="none" stroke="#333" stroke-width="1"/>
-          <circle cx="130" cy="38" r="8" fill="none" stroke="#444" stroke-width="0.8"/>
-          <circle cx="130" cy="38" r="3" fill="#0073DF" opacity="0.3"/>
-          <!-- Heat pipes -->
-          <line x1="170" y1="10" x2="170" y2="66" stroke="#444" stroke-width="1.5"/>
-          <line x1="178" y1="10" x2="178" y2="66" stroke="#444" stroke-width="1.5"/>
-          <line x1="186" y1="10" x2="186" y2="66" stroke="#444" stroke-width="1.5"/>
-          <!-- PCIe connector -->
-          <rect x="10" y="73" width="80" height="12" rx="2" fill="none" stroke="#444" stroke-width="1"/>
-          <rect x="14" y="76" width="4" height="6" rx="0.5" fill="#333"/>
-          <rect x="22" y="76" width="4" height="6" rx="0.5" fill="#333"/>
-          <rect x="30" y="76" width="4" height="6" rx="0.5" fill="#333"/>
-          <rect x="38" y="76" width="4" height="6" rx="0.5" fill="#333"/>
-          <!-- Backplate accent -->
-          <line x1="3" y1="3" x2="197" y2="3" stroke="#0073DF" stroke-width="0.5" opacity="0.6"/>
+      <!-- GPU -->
+      <div class="explode-part" id="part-gpu" style="left:50%;top:50%;width:190px;height:85px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 190 85" fill="none">
+          <defs><linearGradient id="gg" x1="0" y1="0" x2="190" y2="85" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#2a2a3e"/></linearGradient></defs>
+          <rect x="3" y="3" width="184" height="64" rx="5" fill="url(#gg)" stroke="#0073DF" stroke-width="1.5"/>
+          <circle cx="46" cy="35" r="20" fill="none" stroke="#3a3a4e" stroke-width=".8"/>
+          <circle cx="46" cy="35" r="7" fill="none" stroke="#444" stroke-width=".6"/>
+          <circle cx="46" cy="35" r="2.5" fill="#0073DF" opacity=".25"/>
+          <circle cx="124" cy="35" r="20" fill="none" stroke="#3a3a4e" stroke-width=".8"/>
+          <circle cx="124" cy="35" r="7" fill="none" stroke="#444" stroke-width=".6"/>
+          <circle cx="124" cy="35" r="2.5" fill="#0073DF" opacity=".25"/>
+          <line x1="162" y1="10" x2="162" y2="60" stroke="#444" stroke-width="1.2"/>
+          <line x1="170" y1="10" x2="170" y2="60" stroke="#444" stroke-width="1.2"/>
+          <line x1="178" y1="10" x2="178" y2="60" stroke="#444" stroke-width="1.2"/>
+          <rect x="10" y="67" width="72" height="11" rx="2" fill="none" stroke="#444" stroke-width=".8"/>
+          <line x1="3" y1="3" x2="187" y2="3" stroke="#0073DF" stroke-width=".4" opacity=".5"/>
         </svg>
-        <div class="explode-label" style="right:220px;top:50%;transform:translateY(-50%);text-align:right">RTX 4090 <span class="spec">— 24GB GDDR6X</span></div>
+        <div class="explode-label" style="right:210px;top:50%;transform:translateY(-50%);text-align:right">RTX 4090 <span class="spec">— 24GB GDDR6X</span></div>
       </div>
 
-      <!-- CPU (lifts up) -->
-      <div class="explode-part" id="part-cpu" style="left:50%;top:50%;width:100px;height:100px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="cpuGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#2a2a3e"/>
-              <stop offset="100%" stop-color="#1a1a2e"/>
-            </linearGradient>
-          </defs>
-          <rect x="15" y="15" width="70" height="70" rx="4" fill="url(#cpuGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <rect x="25" y="25" width="50" height="50" rx="2" fill="none" stroke="#444" stroke-width="1"/>
-          <text x="50" y="55" text-anchor="middle" fill="#0073DF" font-size="8" font-family="Inter" opacity="0.6">i9</text>
-          <!-- Pins top -->
-          <line x1="22" y1="8" x2="22" y2="15" stroke="#555" stroke-width="1"/><line x1="30" y1="8" x2="30" y2="15" stroke="#555" stroke-width="1"/>
-          <line x1="38" y1="8" x2="38" y2="15" stroke="#555" stroke-width="1"/><line x1="46" y1="8" x2="46" y2="15" stroke="#555" stroke-width="1"/>
-          <line x1="54" y1="8" x2="54" y2="15" stroke="#555" stroke-width="1"/><line x1="62" y1="8" x2="62" y2="15" stroke="#555" stroke-width="1"/>
-          <line x1="70" y1="8" x2="70" y2="15" stroke="#555" stroke-width="1"/><line x1="78" y1="8" x2="78" y2="15" stroke="#555" stroke-width="1"/>
-          <!-- Pins bottom -->
-          <line x1="22" y1="85" x2="22" y2="92" stroke="#555" stroke-width="1"/><line x1="30" y1="85" x2="30" y2="92" stroke="#555" stroke-width="1"/>
-          <line x1="38" y1="85" x2="38" y2="92" stroke="#555" stroke-width="1"/><line x1="46" y1="85" x2="46" y2="92" stroke="#555" stroke-width="1"/>
-          <line x1="54" y1="85" x2="54" y2="92" stroke="#555" stroke-width="1"/><line x1="62" y1="85" x2="62" y2="92" stroke="#555" stroke-width="1"/>
-          <line x1="70" y1="85" x2="70" y2="92" stroke="#555" stroke-width="1"/><line x1="78" y1="85" x2="78" y2="92" stroke="#555" stroke-width="1"/>
-          <!-- Pins left -->
-          <line x1="8" y1="22" x2="15" y2="22" stroke="#555" stroke-width="1"/><line x1="8" y1="30" x2="15" y2="30" stroke="#555" stroke-width="1"/>
-          <line x1="8" y1="38" x2="15" y2="38" stroke="#555" stroke-width="1"/><line x1="8" y1="46" x2="15" y2="46" stroke="#555" stroke-width="1"/>
-          <line x1="8" y1="54" x2="15" y2="54" stroke="#555" stroke-width="1"/><line x1="8" y1="62" x2="15" y2="62" stroke="#555" stroke-width="1"/>
-          <line x1="8" y1="70" x2="15" y2="70" stroke="#555" stroke-width="1"/><line x1="8" y1="78" x2="15" y2="78" stroke="#555" stroke-width="1"/>
-          <!-- Pins right -->
-          <line x1="85" y1="22" x2="92" y2="22" stroke="#555" stroke-width="1"/><line x1="85" y1="30" x2="92" y2="30" stroke="#555" stroke-width="1"/>
-          <line x1="85" y1="38" x2="92" y2="38" stroke="#555" stroke-width="1"/><line x1="85" y1="46" x2="92" y2="46" stroke="#555" stroke-width="1"/>
-          <line x1="85" y1="54" x2="92" y2="54" stroke="#555" stroke-width="1"/><line x1="85" y1="62" x2="92" y2="62" stroke="#555" stroke-width="1"/>
-          <line x1="85" y1="70" x2="92" y2="70" stroke="#555" stroke-width="1"/><line x1="85" y1="78" x2="92" y2="78" stroke="#555" stroke-width="1"/>
+      <!-- CPU -->
+      <div class="explode-part" id="part-cpu" style="left:50%;top:50%;width:90px;height:90px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 90 90" fill="none">
+          <defs><linearGradient id="gcp" x1="0" y1="0" x2="90" y2="90" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#2a2a3e"/><stop offset="100%" stop-color="#1a1a2e"/></linearGradient></defs>
+          <rect x="14" y="14" width="62" height="62" rx="3" fill="url(#gcp)" stroke="#0073DF" stroke-width="1.5"/>
+          <rect x="22" y="22" width="46" height="46" rx="2" fill="none" stroke="#444" stroke-width=".8"/>
+          <text x="45" y="50" text-anchor="middle" fill="#0073DF" font-size="7" font-family="Inter" opacity=".5">i9</text>
+          <line x1="20" y1="8" x2="20" y2="14" stroke="#555" stroke-width=".8"/><line x1="28" y1="8" x2="28" y2="14" stroke="#555" stroke-width=".8"/><line x1="36" y1="8" x2="36" y2="14" stroke="#555" stroke-width=".8"/><line x1="44" y1="8" x2="44" y2="14" stroke="#555" stroke-width=".8"/><line x1="52" y1="8" x2="52" y2="14" stroke="#555" stroke-width=".8"/><line x1="60" y1="8" x2="60" y2="14" stroke="#555" stroke-width=".8"/><line x1="68" y1="8" x2="68" y2="14" stroke="#555" stroke-width=".8"/>
+          <line x1="20" y1="76" x2="20" y2="82" stroke="#555" stroke-width=".8"/><line x1="28" y1="76" x2="28" y2="82" stroke="#555" stroke-width=".8"/><line x1="36" y1="76" x2="36" y2="82" stroke="#555" stroke-width=".8"/><line x1="44" y1="76" x2="44" y2="82" stroke="#555" stroke-width=".8"/><line x1="52" y1="76" x2="52" y2="82" stroke="#555" stroke-width=".8"/><line x1="60" y1="76" x2="60" y2="82" stroke="#555" stroke-width=".8"/><line x1="68" y1="76" x2="68" y2="82" stroke="#555" stroke-width=".8"/>
+          <line x1="8" y1="20" x2="14" y2="20" stroke="#555" stroke-width=".8"/><line x1="8" y1="28" x2="14" y2="28" stroke="#555" stroke-width=".8"/><line x1="8" y1="36" x2="14" y2="36" stroke="#555" stroke-width=".8"/><line x1="8" y1="44" x2="14" y2="44" stroke="#555" stroke-width=".8"/><line x1="8" y1="52" x2="14" y2="52" stroke="#555" stroke-width=".8"/><line x1="8" y1="60" x2="14" y2="60" stroke="#555" stroke-width=".8"/><line x1="8" y1="68" x2="14" y2="68" stroke="#555" stroke-width=".8"/>
+          <line x1="76" y1="20" x2="82" y2="20" stroke="#555" stroke-width=".8"/><line x1="76" y1="28" x2="82" y2="28" stroke="#555" stroke-width=".8"/><line x1="76" y1="36" x2="82" y2="36" stroke="#555" stroke-width=".8"/><line x1="76" y1="44" x2="82" y2="44" stroke="#555" stroke-width=".8"/><line x1="76" y1="52" x2="82" y2="52" stroke="#555" stroke-width=".8"/><line x1="76" y1="60" x2="82" y2="60" stroke="#555" stroke-width=".8"/><line x1="76" y1="68" x2="82" y2="68" stroke="#555" stroke-width=".8"/>
         </svg>
-        <div class="explode-label" style="left:50%;bottom:-30px;transform:translateX(-50%)">Intel Core i9-14900K <span class="spec">— 24 Cores</span></div>
+        <div class="explode-label" style="left:50%;bottom:-28px;transform:translateX(-50%)">Intel Core i9-14900K <span class="spec">— 24 Cores</span></div>
       </div>
 
-      <!-- RAM 1 (fans out upper-right) -->
-      <div class="explode-part" id="part-ram1" style="left:50%;top:50%;width:140px;height:40px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ramGrad" x1="0" y1="0" x2="140" y2="40" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1a1a2e"/>
-              <stop offset="100%" stop-color="#2a2a3e"/>
-            </linearGradient>
-          </defs>
-          <rect x="3" y="3" width="134" height="28" rx="3" fill="url(#ramGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <!-- Chips -->
-          <rect x="10" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="28" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="46" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="64" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="82" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="100" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="118" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Contacts -->
-          <line x1="20" y1="31" x2="20" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="40" y1="31" x2="40" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="60" y1="31" x2="60" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="80" y1="31" x2="80" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="100" y1="31" x2="100" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="120" y1="31" x2="120" y2="37" stroke="#555" stroke-width="0.8"/>
-          <!-- Top accent -->
-          <line x1="3" y1="3" x2="137" y2="3" stroke="#0073DF" stroke-width="0.5" opacity="0.4"/>
+      <!-- RAM 1 -->
+      <div class="explode-part" id="part-ram1" style="left:50%;top:50%;width:130px;height:36px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 130 36" fill="none">
+          <defs><linearGradient id="gr" x1="0" y1="0" x2="130" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#2a2a3e"/></linearGradient></defs>
+          <rect x="3" y="3" width="124" height="24" rx="3" fill="url(#gr)" stroke="#0073DF" stroke-width="1.5"/>
+          <rect x="10" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="26" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="42" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="58" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="74" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="90" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="106" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <line x1="18" y1="27" x2="18" y2="33" stroke="#555" stroke-width=".6"/><line x1="38" y1="27" x2="38" y2="33" stroke="#555" stroke-width=".6"/><line x1="58" y1="27" x2="58" y2="33" stroke="#555" stroke-width=".6"/><line x1="78" y1="27" x2="78" y2="33" stroke="#555" stroke-width=".6"/><line x1="98" y1="27" x2="98" y2="33" stroke="#555" stroke-width=".6"/>
+          <line x1="3" y1="3" x2="127" y2="3" stroke="#0073DF" stroke-width=".3" opacity=".35"/>
         </svg>
       </div>
 
       <!-- RAM 2 -->
-      <div class="explode-part" id="part-ram2" style="left:50%;top:50%;width:140px;height:40px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="3" width="134" height="28" rx="3" fill="url(#ramGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <rect x="10" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="28" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="46" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="64" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="82" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="100" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="118" y="8" width="14" height="18" rx="1.5" fill="none" stroke="#444" stroke-width="0.8"/>
-          <line x1="20" y1="31" x2="20" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="40" y1="31" x2="40" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="60" y1="31" x2="60" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="80" y1="31" x2="80" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="100" y1="31" x2="100" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="120" y1="31" x2="120" y2="37" stroke="#555" stroke-width="0.8"/>
-          <line x1="3" y1="3" x2="137" y2="3" stroke="#0073DF" stroke-width="0.5" opacity="0.4"/>
+      <div class="explode-part" id="part-ram2" style="left:50%;top:50%;width:130px;height:36px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 130 36" fill="none">
+          <rect x="3" y="3" width="124" height="24" rx="3" fill="url(#gr)" stroke="#0073DF" stroke-width="1.5"/>
+          <rect x="10" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="26" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="42" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="58" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="74" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="90" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/><rect x="106" y="7" width="12" height="16" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <line x1="18" y1="27" x2="18" y2="33" stroke="#555" stroke-width=".6"/><line x1="38" y1="27" x2="38" y2="33" stroke="#555" stroke-width=".6"/><line x1="58" y1="27" x2="58" y2="33" stroke="#555" stroke-width=".6"/><line x1="78" y1="27" x2="78" y2="33" stroke="#555" stroke-width=".6"/><line x1="98" y1="27" x2="98" y2="33" stroke="#555" stroke-width=".6"/>
+          <line x1="3" y1="3" x2="127" y2="3" stroke="#0073DF" stroke-width=".3" opacity=".35"/>
         </svg>
-        <div class="explode-label" style="left:160px;top:50%;transform:translateY(-50%)">64GB DDR5 <span class="spec">— 5600MHz</span></div>
+        <div class="explode-label" style="left:150px;top:50%;transform:translateY(-50%)">64GB DDR5 <span class="spec">— 5600MHz</span></div>
       </div>
 
-      <!-- MOTHERBOARD (drifts backward/down) -->
-      <div class="explode-part" id="part-mobo" style="left:50%;top:50%;width:200px;height:200px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="moboGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1a1a2e"/>
-              <stop offset="100%" stop-color="#2a2a3e"/>
-            </linearGradient>
-          </defs>
-          <rect x="4" y="4" width="192" height="192" rx="4" fill="url(#moboGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <!-- Mounting holes -->
-          <circle cx="14" cy="14" r="4" fill="none" stroke="#444" stroke-width="1"/>
-          <circle cx="186" cy="14" r="4" fill="none" stroke="#444" stroke-width="1"/>
-          <circle cx="14" cy="186" r="4" fill="none" stroke="#444" stroke-width="1"/>
-          <circle cx="186" cy="186" r="4" fill="none" stroke="#444" stroke-width="1"/>
-          <!-- CPU socket -->
-          <rect x="60" y="40" width="60" height="60" rx="2" fill="none" stroke="#555" stroke-width="1.5"/>
-          <rect x="70" y="50" width="40" height="40" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- RAM slots -->
-          <rect x="140" y="35" width="10" height="70" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="155" y="35" width="10" height="70" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- PCIe slots -->
-          <rect x="30" y="120" width="120" height="10" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="30" y="140" width="120" height="8" rx="1" fill="none" stroke="#333" stroke-width="0.8"/>
-          <rect x="30" y="156" width="120" height="10" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Chipset -->
-          <rect x="140" y="140" width="30" height="30" rx="2" fill="none" stroke="#444" stroke-width="1"/>
-          <text x="155" y="159" text-anchor="middle" fill="#444" font-size="6" font-family="Inter">Z790</text>
-          <!-- IO panel -->
-          <rect x="10" y="30" width="35" height="40" rx="2" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Traces -->
-          <line x1="90" y1="100" x2="90" y2="120" stroke="#333" stroke-width="0.5"/>
-          <line x1="90" y1="100" x2="140" y2="70" stroke="#333" stroke-width="0.5"/>
-          <line x1="120" y1="70" x2="140" y2="70" stroke="#333" stroke-width="0.5"/>
-          <!-- 24-pin -->
-          <rect x="170" y="120" width="16" height="40" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
+      <!-- MOTHERBOARD -->
+      <div class="explode-part" id="part-mobo" style="left:50%;top:50%;width:180px;height:180px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 180 180" fill="none">
+          <defs><linearGradient id="gm" x1="0" y1="0" x2="180" y2="180" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#2a2a3e"/></linearGradient></defs>
+          <rect x="4" y="4" width="172" height="172" rx="3" fill="url(#gm)" stroke="#0073DF" stroke-width="1.5"/>
+          <circle cx="12" cy="12" r="3" fill="none" stroke="#444" stroke-width=".7"/><circle cx="168" cy="12" r="3" fill="none" stroke="#444" stroke-width=".7"/><circle cx="12" cy="168" r="3" fill="none" stroke="#444" stroke-width=".7"/><circle cx="168" cy="168" r="3" fill="none" stroke="#444" stroke-width=".7"/>
+          <rect x="52" y="34" width="54" height="54" rx="2" fill="none" stroke="#555" stroke-width="1.2"/>
+          <rect x="60" y="42" width="38" height="38" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="126" y="30" width="9" height="62" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="140" y="30" width="9" height="62" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="26" y="108" width="108" height="9" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="26" y="124" width="108" height="7" rx="1" fill="none" stroke="#3a3a4e" stroke-width=".6"/>
+          <rect x="26" y="138" width="108" height="9" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="126" y="126" width="26" height="26" rx="2" fill="none" stroke="#444" stroke-width=".7"/>
+          <text x="139" y="143" text-anchor="middle" fill="#444" font-size="5.5" font-family="Inter">Z790</text>
+          <rect x="10" y="26" width="30" height="36" rx="2" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="154" y="108" width="14" height="36" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
+          <line x1="79" y1="88" x2="79" y2="108" stroke="#333" stroke-width=".4"/><line x1="79" y1="88" x2="126" y2="60" stroke="#333" stroke-width=".4"/>
         </svg>
-        <div class="explode-label" style="left:50%;top:215px;transform:translateX(-50%)">ROG Strix Z790 <span class="spec">— LGA 1700</span></div>
+        <div class="explode-label" style="left:50%;top:196px;transform:translateX(-50%)">ROG Strix Z790 <span class="spec">— LGA 1700</span></div>
       </div>
 
-      <!-- COOLING FAN (floats lower left) -->
-      <div class="explode-part" id="part-fan" style="left:50%;top:50%;width:110px;height:110px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="fanGrad" x1="0" y1="0" x2="110" y2="110" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1a1a2e"/>
-              <stop offset="100%" stop-color="#2a2a3e"/>
-            </linearGradient>
-          </defs>
-          <rect x="4" y="4" width="102" height="102" rx="6" fill="url(#fanGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <circle cx="55" cy="55" r="42" fill="none" stroke="#333" stroke-width="1"/>
-          <circle cx="55" cy="55" r="10" fill="none" stroke="#444" stroke-width="1.5"/>
-          <circle cx="55" cy="55" r="4" fill="#0073DF" opacity="0.3"/>
-          <!-- Fan blades -->
-          <path d="M55 13 C45 25,40 35,48 45 C52 50,58 50,62 45 C70 35,65 25,55 13Z" fill="none" stroke="#444" stroke-width="0.8"/>
-          <path d="M97 55 C85 45,75 40,65 48 C60 52,60 58,65 62 C75 70,85 65,97 55Z" fill="none" stroke="#444" stroke-width="0.8"/>
-          <path d="M55 97 C65 85,70 75,62 65 C58 60,52 60,48 65 C40 75,45 85,55 97Z" fill="none" stroke="#444" stroke-width="0.8"/>
-          <path d="M13 55 C25 65,35 70,45 62 C50 58,50 52,45 48 C35 40,25 45,13 55Z" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Corner mounts -->
-          <circle cx="12" cy="12" r="3" fill="none" stroke="#444" stroke-width="0.8"/>
-          <circle cx="98" cy="12" r="3" fill="none" stroke="#444" stroke-width="0.8"/>
-          <circle cx="12" cy="98" r="3" fill="none" stroke="#444" stroke-width="0.8"/>
-          <circle cx="98" cy="98" r="3" fill="none" stroke="#444" stroke-width="0.8"/>
+      <!-- COOLING FAN -->
+      <div class="explode-part" id="part-fan" style="left:50%;top:50%;width:100px;height:100px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 100 100" fill="none">
+          <defs><linearGradient id="gf" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#2a2a3e"/></linearGradient></defs>
+          <rect x="4" y="4" width="92" height="92" rx="5" fill="url(#gf)" stroke="#0073DF" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#3a3a4e" stroke-width=".8"/>
+          <circle cx="50" cy="50" r="9" fill="none" stroke="#444" stroke-width="1.2"/>
+          <circle cx="50" cy="50" r="3.5" fill="#0073DF" opacity=".25"/>
+          <path d="M50 12C42 22,38 30,44 40C47 44,53 44,56 40C62 30,58 22,50 12Z" fill="none" stroke="#444" stroke-width=".6"/>
+          <path d="M88 50C78 42,68 38,60 44C56 47,56 53,60 56C68 62,78 58,88 50Z" fill="none" stroke="#444" stroke-width=".6"/>
+          <path d="M50 88C58 78,62 68,56 60C53 56,47 56,44 60C38 68,42 78,50 88Z" fill="none" stroke="#444" stroke-width=".6"/>
+          <path d="M12 50C22 58,30 62,40 56C44 53,44 47,40 44C30 38,22 42,12 50Z" fill="none" stroke="#444" stroke-width=".6"/>
+          <circle cx="10" cy="10" r="2.5" fill="none" stroke="#444" stroke-width=".5"/><circle cx="90" cy="10" r="2.5" fill="none" stroke="#444" stroke-width=".5"/><circle cx="10" cy="90" r="2.5" fill="none" stroke="#444" stroke-width=".5"/><circle cx="90" cy="90" r="2.5" fill="none" stroke="#444" stroke-width=".5"/>
         </svg>
-        <div class="explode-label" style="right:130px;top:50%;transform:translateY(-50%);text-align:right">360mm AIO <span class="spec">— Liquid Cooling</span></div>
+        <div class="explode-label" style="right:120px;top:50%;transform:translateY(-50%);text-align:right">360mm AIO <span class="spec">— Liquid Cooled</span></div>
       </div>
 
-      <!-- SSD (drops lower right) -->
-      <div class="explode-part" id="part-ssd" style="left:50%;top:50%;width:120px;height:50px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ssdGrad" x1="0" y1="0" x2="120" y2="50" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1a1a2e"/>
-              <stop offset="100%" stop-color="#2a2a3e"/>
-            </linearGradient>
-          </defs>
-          <rect x="3" y="3" width="114" height="44" rx="6" fill="url(#ssdGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <!-- NAND chips -->
-          <rect x="12" y="10" width="22" height="14" rx="2" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="38" y="10" width="22" height="14" rx="2" fill="none" stroke="#444" stroke-width="0.8"/>
-          <rect x="64" y="10" width="22" height="14" rx="2" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Controller -->
-          <rect x="92" y="10" width="18" height="14" rx="2" fill="none" stroke="#555" stroke-width="1"/>
-          <!-- Label area -->
-          <text x="60" y="40" text-anchor="middle" fill="#444" font-size="7" font-family="Inter">990 PRO</text>
-          <!-- Connector -->
-          <rect x="12" y="30" width="30" height="6" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Screw holes -->
-          <circle cx="10" cy="10" r="2" fill="none" stroke="#444" stroke-width="0.5"/>
-          <circle cx="110" cy="40" r="2" fill="none" stroke="#444" stroke-width="0.5"/>
+      <!-- SSD -->
+      <div class="explode-part" id="part-ssd" style="left:50%;top:50%;width:110px;height:44px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 110 44" fill="none">
+          <defs><linearGradient id="gs" x1="0" y1="0" x2="110" y2="44" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#2a2a3e"/></linearGradient></defs>
+          <rect x="3" y="3" width="104" height="38" rx="5" fill="url(#gs)" stroke="#0073DF" stroke-width="1.5"/>
+          <rect x="10" y="9" width="20" height="12" rx="1.5" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="34" y="9" width="20" height="12" rx="1.5" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="58" y="9" width="20" height="12" rx="1.5" fill="none" stroke="#444" stroke-width=".6"/>
+          <rect x="82" y="9" width="16" height="12" rx="1.5" fill="none" stroke="#555" stroke-width=".7"/>
+          <text x="55" y="36" text-anchor="middle" fill="#444" font-size="6" font-family="Inter">990 PRO</text>
+          <rect x="10" y="26" width="28" height="5" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
         </svg>
-        <div class="explode-label" style="left:140px;top:50%;transform:translateY(-50%)">990 PRO <span class="spec">— 2TB NVMe</span></div>
+        <div class="explode-label" style="left:130px;top:50%;transform:translateY(-50%)">Samsung 990 PRO <span class="spec">— 2TB NVMe</span></div>
       </div>
 
-      <!-- PSU (slides out bottom) -->
-      <div class="explode-part" id="part-psu" style="left:50%;top:50%;width:160px;height:90px;transform:translate(-50%,-50%)">
-        <svg viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="psuGrad" x1="0" y1="0" x2="160" y2="90" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1a1a2e"/>
-              <stop offset="100%" stop-color="#2a2a3e"/>
-            </linearGradient>
-          </defs>
-          <rect x="3" y="3" width="154" height="84" rx="4" fill="url(#psuGrad)" stroke="#0073DF" stroke-width="1.5"/>
-          <!-- Fan grill -->
-          <circle cx="55" cy="45" r="30" fill="none" stroke="#333" stroke-width="1"/>
-          <circle cx="55" cy="45" r="20" fill="none" stroke="#333" stroke-width="0.5"/>
-          <circle cx="55" cy="45" r="10" fill="none" stroke="#333" stroke-width="0.5"/>
-          <circle cx="55" cy="45" r="4" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Grill lines -->
-          <line x1="25" y1="45" x2="85" y2="45" stroke="#333" stroke-width="0.5"/>
-          <line x1="55" y1="15" x2="55" y2="75" stroke="#333" stroke-width="0.5"/>
-          <line x1="33" y1="23" x2="77" y2="67" stroke="#333" stroke-width="0.5"/>
-          <line x1="33" y1="67" x2="77" y2="23" stroke="#333" stroke-width="0.5"/>
-          <!-- Label -->
-          <rect x="100" y="15" width="48" height="28" rx="3" fill="none" stroke="#444" stroke-width="0.8"/>
-          <text x="124" y="33" text-anchor="middle" fill="#444" font-size="7" font-family="Inter">1000W</text>
-          <!-- Power switch -->
-          <rect x="110" y="58" width="16" height="10" rx="2" fill="none" stroke="#444" stroke-width="0.8"/>
-          <circle cx="114" cy="63" r="2" fill="#CC0000" opacity="0.5"/>
-          <!-- Cables -->
-          <rect x="132" y="58" width="12" height="10" rx="1" fill="none" stroke="#444" stroke-width="0.8"/>
-          <!-- Screws -->
-          <circle cx="10" cy="10" r="2" fill="none" stroke="#444" stroke-width="0.5"/>
-          <circle cx="150" cy="10" r="2" fill="none" stroke="#444" stroke-width="0.5"/>
-          <circle cx="10" cy="80" r="2" fill="none" stroke="#444" stroke-width="0.5"/>
-          <circle cx="150" cy="80" r="2" fill="none" stroke="#444" stroke-width="0.5"/>
+      <!-- PSU -->
+      <div class="explode-part" id="part-psu" style="left:50%;top:50%;width:150px;height:80px;transform:translate(-50%,-50%)">
+        <svg viewBox="0 0 150 80" fill="none">
+          <defs><linearGradient id="gp" x1="0" y1="0" x2="150" y2="80" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1a1a2e"/><stop offset="100%" stop-color="#2a2a3e"/></linearGradient></defs>
+          <rect x="3" y="3" width="144" height="74" rx="4" fill="url(#gp)" stroke="#0073DF" stroke-width="1.5"/>
+          <circle cx="48" cy="40" r="27" fill="none" stroke="#3a3a4e" stroke-width=".8"/>
+          <circle cx="48" cy="40" r="18" fill="none" stroke="#333" stroke-width=".4"/>
+          <circle cx="48" cy="40" r="9" fill="none" stroke="#333" stroke-width=".4"/>
+          <circle cx="48" cy="40" r="3.5" fill="none" stroke="#444" stroke-width=".6"/>
+          <line x1="21" y1="40" x2="75" y2="40" stroke="#333" stroke-width=".4"/><line x1="48" y1="13" x2="48" y2="67" stroke="#333" stroke-width=".4"/>
+          <line x1="29" y1="21" x2="67" y2="59" stroke="#333" stroke-width=".3"/><line x1="29" y1="59" x2="67" y2="21" stroke="#333" stroke-width=".3"/>
+          <rect x="92" y="14" width="44" height="24" rx="2.5" fill="none" stroke="#444" stroke-width=".6"/>
+          <text x="114" y="30" text-anchor="middle" fill="#444" font-size="6.5" font-family="Inter">1000W</text>
+          <rect x="100" y="50" width="14" height="9" rx="1.5" fill="none" stroke="#444" stroke-width=".6"/>
+          <circle cx="104" cy="55" r="1.5" fill="#CC0000" opacity=".4"/>
+          <rect x="120" y="50" width="10" height="9" rx="1" fill="none" stroke="#444" stroke-width=".6"/>
         </svg>
-        <div class="explode-label" style="left:50%;top:105px;transform:translateX(-50%)">1000W PSU <span class="spec">— 80+ Platinum</span></div>
+        <div class="explode-label" style="left:50%;top:95px;transform:translateX(-50%)">Corsair RM1000x <span class="spec">— 1000W 80+ Platinum</span></div>
       </div>
 
     </div>
 
-    <!-- Hero overlay text -->
-    <div class="hero-overlay">
-      <div class="hero-badge"><span class="pulse"></span> Now Open — 29 Locations Nationwide</div>
-      <h1>Your Passion,<br><span class="gradient-text">Our Parts.</span></h1>
-      <p>Scroll to explore what's inside a dream build.</p>
+    <!-- Bottom CTA -->
+    <div class="hero-bottom-cta" id="heroCta">
+      <h2>Build Your Dream PC — Every Part in Stock</h2>
+      <button class="btn-white" onclick="document.getElementById('builder').scrollIntoView({behavior:'smooth'})">START CUSTOM BUILD →</button>
     </div>
 
     <div class="scroll-hint" id="scrollHint">Scroll to explore</div>
   </section>
 </div>
 
-<!-- STATS BAR -->
-<section class="stats-bar">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="hero-stat reveal">
-        <div class="number">29+</div>
-        <div class="label">Locations</div>
-      </div>
-      <div class="hero-stat reveal reveal-delay-1">
-        <div class="number">40K+</div>
-        <div class="label">Products</div>
-      </div>
-      <div class="hero-stat reveal reveal-delay-2">
-        <div class="number">4.8&#9733;</div>
-        <div class="label">Rating</div>
-      </div>
-      <div class="hero-stat reveal reveal-delay-3">
-        <div class="number">18min</div>
-        <div class="label">Pickup</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CATEGORIES -->
+<!-- ===== 4. CATEGORIES ===== -->
+<div class="section-divider"></div>
 <section class="categories" id="categories">
   <div class="container">
-    <h2 class="section-title reveal">Shop by <span class="accent">Category</span></h2>
-    <p class="section-subtitle reveal reveal-delay-1">From core components to complete systems — find exactly what powers your next project.</p>
+    <h2 class="section-heading reveal">Shop by <span class="accent">Category</span></h2>
+    <p class="section-sub reveal reveal-d1">Everything you need for your next build, upgrade, or setup.</p>
     <div class="cat-grid">
-      <div class="cat-card reveal reveal-delay-1">
-        <span class="cat-icon">&#9889;</span>
-        <h3>Processors</h3>
-        <p>Intel & AMD — latest gen, in stock</p>
-        <div class="cat-arrow">&#8594;</div>
-      </div>
-      <div class="cat-card reveal reveal-delay-2">
-        <span class="cat-icon">&#127918;</span>
-        <h3>Graphics Cards</h3>
-        <p>RTX, Radeon — MSRP, no scalpers</p>
-        <div class="cat-arrow">&#8594;</div>
-      </div>
-      <div class="cat-card reveal reveal-delay-3">
-        <span class="cat-icon">&#128187;</span>
-        <h3>Laptops</h3>
-        <p>Gaming, ultrabook, workstation</p>
-        <div class="cat-arrow">&#8594;</div>
-      </div>
-      <div class="cat-card reveal reveal-delay-4">
-        <span class="cat-icon">&#128421;</span>
-        <h3>Desktops</h3>
-        <p>Pre-built rigs, ready to dominate</p>
-        <div class="cat-arrow">&#8594;</div>
-      </div>
-      <div class="cat-card reveal reveal-delay-5">
-        <span class="cat-icon">&#128424;</span>
-        <h3>Monitors</h3>
-        <p>4K, ultrawide, 240Hz+ panels</p>
-        <div class="cat-arrow">&#8594;</div>
-      </div>
-      <div class="cat-card reveal">
-        <span class="cat-icon">&#128295;</span>
-        <h3>Custom PC Builder</h3>
-        <p>Pick every part, we assemble it</p>
-        <div class="cat-arrow">&#8594;</div>
-      </div>
+      <div class="cat-card reveal reveal-d1"><span class="cat-icon">🖥️</span><h3>Desktop Computers</h3><p>Pre-built & Custom Gaming PCs</p><div class="arrow">→</div></div>
+      <div class="cat-card reveal reveal-d2"><span class="cat-icon">💻</span><h3>Laptops</h3><p>Work, Create & Game Anywhere</p><div class="arrow">→</div></div>
+      <div class="cat-card reveal reveal-d3"><span class="cat-icon">🎮</span><h3>Graphics Cards</h3><p>NVIDIA & AMD, Always in Stock</p><div class="arrow">→</div></div>
+      <div class="cat-card reveal reveal-d4"><span class="cat-icon">⚡</span><h3>Processors</h3><p>Intel & AMD, Latest Gen</p><div class="arrow">→</div></div>
+      <div class="cat-card reveal reveal-d1"><span class="cat-icon">🖥️</span><h3>Monitors</h3><p>4K, Ultrawide & Gaming Displays</p><div class="arrow">→</div></div>
+      <div class="cat-card reveal reveal-d2"><span class="cat-icon">🔧</span><h3>PC Components</h3><p>Build It Your Way</p><div class="arrow">→</div></div>
     </div>
   </div>
 </section>
 
-<!-- DEALS -->
+<!-- ===== 5. DEALS ===== -->
+<div class="section-divider"></div>
 <section class="deals" id="deals">
   <div class="container">
-    <h2 class="section-title reveal">Today's <span class="red">Top Deals</span></h2>
-    <p class="section-subtitle reveal reveal-delay-1">Limited-time prices on the hardware you've been watching. Don't sleep on these.</p>
+    <div class="deals-header reveal">
+      <h2 class="section-heading" style="margin-bottom:0">Today's Top Deals</h2>
+      <span class="hot-badge">🔥 HOT</span>
+    </div>
+    <p class="section-sub reveal reveal-d1">Limited-time prices. Don't sleep on these.</p>
     <div class="deals-grid">
-      <div class="deal-card reveal reveal-delay-1">
-        <div class="deal-image">
-          <span class="deal-badge">SAVE $120</span>
-          &#9889;
-        </div>
+
+      <div class="deal-card reveal reveal-d1">
+        <div class="deal-img gpu-bg"><span class="deal-save">SAVE $200</span>🎮</div>
         <div class="deal-info">
-          <div class="deal-brand">AMD</div>
-          <div class="deal-name">Ryzen 9 7950X3D Processor</div>
-          <div class="deal-pricing">
-            <span class="deal-price">$549</span>
-            <span class="deal-original">$669</span>
-          </div>
-          <button class="deal-btn">&#128722; Add to Cart</button>
+          <div class="deal-name">ASUS ROG Strix RTX 4070 Ti SUPER 16GB</div>
+          <div class="deal-stars">★★★★½ <span class="count">(2,847)</span></div>
+          <div class="deal-pricing"><span class="deal-price">$749</span><span class="deal-original">$949</span></div>
+          <button class="deal-btn" data-deal>Add to Cart</button>
         </div>
       </div>
-      <div class="deal-card reveal reveal-delay-2">
-        <div class="deal-image">
-          <span class="deal-badge">SAVE $200</span>
-          &#127918;
-        </div>
+
+      <div class="deal-card reveal reveal-d2">
+        <div class="deal-img cpu-bg"><span class="deal-save">SAVE $120</span>⚡</div>
         <div class="deal-info">
-          <div class="deal-brand">NVIDIA</div>
-          <div class="deal-name">GeForce RTX 4080 SUPER 16GB</div>
-          <div class="deal-pricing">
-            <span class="deal-price">$799</span>
-            <span class="deal-original">$999</span>
-          </div>
-          <button class="deal-btn">&#128722; Add to Cart</button>
+          <div class="deal-name">AMD Ryzen 9 7950X3D Processor</div>
+          <div class="deal-stars">★★★★★ <span class="count">(1,923)</span></div>
+          <div class="deal-pricing"><span class="deal-price">$549</span><span class="deal-original">$669</span></div>
+          <button class="deal-btn" data-deal>Add to Cart</button>
         </div>
       </div>
-      <div class="deal-card reveal reveal-delay-3">
-        <div class="deal-image">
-          <span class="deal-badge">SAVE $150</span>
-          &#128424;
-        </div>
+
+      <div class="deal-card reveal reveal-d3">
+        <div class="deal-img monitor-bg"><span class="deal-save">SAVE $150</span>🖥️</div>
         <div class="deal-info">
-          <div class="deal-brand">Samsung</div>
-          <div class="deal-name">Odyssey G9 49" DQHD 240Hz</div>
-          <div class="deal-pricing">
-            <span class="deal-price">$899</span>
-            <span class="deal-original">$1,049</span>
-          </div>
-          <button class="deal-btn">&#128722; Add to Cart</button>
+          <div class="deal-name">Samsung Odyssey G9 49" DQHD 240Hz</div>
+          <div class="deal-stars">★★★★½ <span class="count">(986)</span></div>
+          <div class="deal-pricing"><span class="deal-price">$899</span><span class="deal-original">$1,049</span></div>
+          <button class="deal-btn" data-deal>Add to Cart</button>
         </div>
       </div>
-      <div class="deal-card reveal reveal-delay-4">
-        <div class="deal-image">
-          <span class="deal-badge">SAVE $300</span>
-          &#128187;
-        </div>
+
+      <div class="deal-card reveal reveal-d4">
+        <div class="deal-img laptop-bg"><span class="deal-save">SAVE $300</span>💻</div>
         <div class="deal-info">
-          <div class="deal-brand">ASUS</div>
-          <div class="deal-name">ROG Zephyrus G16 RTX 4070</div>
-          <div class="deal-pricing">
-            <span class="deal-price">$1,399</span>
-            <span class="deal-original">$1,699</span>
-          </div>
-          <button class="deal-btn">&#128722; Add to Cart</button>
+          <div class="deal-name">ASUS ROG Zephyrus G16 RTX 4070 Laptop</div>
+          <div class="deal-stars">★★★★½ <span class="count">(712)</span></div>
+          <div class="deal-pricing"><span class="deal-price">$1,399</span><span class="deal-original">$1,699</span></div>
+          <button class="deal-btn" data-deal>Add to Cart</button>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- WHY MICRO CENTER -->
-<section class="why" id="why">
-  <div class="container">
-    <h2 class="section-title reveal">Why <span class="accent">Micro Center</span>?</h2>
-    <p class="section-subtitle reveal reveal-delay-1">We're not just another retailer. We're built by enthusiasts, for enthusiasts.</p>
-    <div class="why-grid">
-      <div class="why-card reveal reveal-delay-1">
-        <div class="why-icon blue">&#9889;</div>
-        <h3>18-Minute In-Store Pickup</h3>
-        <p>Order online, grab it on your way home. Most orders ready in 18 minutes or less — no waiting, no shipping anxiety.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-2">
-        <div class="why-icon red">&#128736;</div>
-        <h3>Expert Technicians</h3>
-        <p>Our associates are builders, overclockers, and engineers — not script readers. Real advice from people who live and breathe tech.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-3">
-        <div class="why-icon green">&#9989;</div>
-        <h3>Price Match Guarantee</h3>
-        <p>Found it cheaper? We'll match it. No hoops, no hassle. We're committed to giving you the best deal — period.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CUSTOM PC BUILDER CTA -->
+<!-- ===== 6. PC BUILDER CTA ===== -->
+<div class="section-divider"></div>
 <section class="builder-cta" id="builder">
   <div class="container">
     <div class="builder-banner reveal">
-      <span class="builder-icon">&#128296;</span>
-      <h2>Build Your Dream Machine</h2>
-      <p>Use our Custom PC Builder to pick every component, check compatibility in real-time, and have our technicians assemble it — with a warranty.</p>
-      <div class="builder-features">
-        <div class="builder-feature"><span class="check">&#10003;</span> Real-time compatibility</div>
-        <div class="builder-feature"><span class="check">&#10003;</span> Expert assembly</div>
-        <div class="builder-feature"><span class="check">&#10003;</span> 2-year warranty</div>
-        <div class="builder-feature"><span class="check">&#10003;</span> Free cable management</div>
+      <div class="builder-text">
+        <h2>Meet the Micro Center PC Builder</h2>
+        <p>Choose from hundreds of in-stock, compatible parts. We'll check compatibility for you in real-time — then our expert technicians assemble it with a warranty.</p>
+        <button class="btn-white" onclick="#">START CUSTOM BUILD →</button>
       </div>
-      <a href="#" class="btn btn-primary">Start Your Build &#8594;</a>
+      <div class="builder-graphic">
+        <svg width="220" height="180" viewBox="0 0 220 180" fill="none">
+          <rect x="40" y="10" width="140" height="130" rx="8" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+          <rect x="52" y="22" width="116" height="90" rx="4" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".8"/>
+          <circle cx="110" cy="150" r="6" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          <rect x="80" y="140" width="60" height="12" rx="3" fill="none" stroke="rgba(255,255,255,.15)" stroke-width=".8"/>
+          <rect x="10" y="50" width="22" height="60" rx="3" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".8"/>
+          <rect x="188" y="40" width="22" height="70" rx="3" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".8"/>
+          <rect x="60" y="30" width="40" height="14" rx="2" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".6"/>
+          <rect x="120" y="30" width="40" height="14" rx="2" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".6"/>
+          <rect x="70" y="55" width="80" height="50" rx="4" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          <circle cx="90" cy="80" r="14" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".6"/>
+          <circle cx="130" cy="80" r="14" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".6"/>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="newsletter" id="newsletter">
+<!-- ===== 7. SERVICES ===== -->
+<div class="section-divider"></div>
+<section class="services" id="services">
   <div class="container">
-    <div class="newsletter-box">
-      <h2 class="reveal">Stay in the <span class="accent">Loop</span></h2>
-      <p class="reveal reveal-delay-1">Get exclusive deals, new product drops, and tech tips delivered straight to your inbox.</p>
-      <form class="newsletter-form reveal reveal-delay-2" onsubmit="handleSubscribe(event)">
-        <input type="email" placeholder="Enter your email address" required>
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
-      <p class="newsletter-note reveal reveal-delay-3">No spam. Unsubscribe anytime. We respect your inbox.</p>
+    <h2 class="section-heading reveal">Why Shop <span class="accent">Micro Center</span>?</h2>
+    <p class="section-sub reveal reveal-d1">We're built by enthusiasts, for enthusiasts.</p>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-d1"><span class="service-icon">🕐</span><h3>18-Minute In-Store Pickup</h3><p>Order online, grab it fast. Most orders ready in 18 minutes or less — no waiting, no shipping anxiety.</p></div>
+      <div class="service-card reveal reveal-d2"><span class="service-icon">🔧</span><h3>Expert Repair Services</h3><p>A+ Certified Technicians, walk-ins welcome. Real advice from people who live and breathe tech.</p></div>
+      <div class="service-card reveal reveal-d3"><span class="service-icon">💰</span><h3>Price Match Guarantee</h3><p>Found it cheaper? We'll match it. No hoops, no hassle — period.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ===== 8. STORE LOCATOR ===== -->
+<div class="section-divider"></div>
+<section class="store-locator" id="stores">
+  <div class="container">
+    <span class="pin-icon reveal">📍</span>
+    <h2 class="section-heading reveal reveal-d1">Find Your Nearest Micro Center</h2>
+    <p class="sub reveal reveal-d2">29 Stores in 19 States — and More on the Way</p>
+    <button class="btn-blue reveal reveal-d3">FIND A STORE →</button>
+  </div>
+</section>
+
+<!-- ===== 9. FOOTER ===== -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-top">
       <div class="footer-brand">
-        <div class="nav-logo" style="margin-bottom: 4px;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Micro_Center_logo.svg/500px-Micro_Center_logo.svg.png" alt="Micro Center">
-        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Micro_Center_logo.svg/1200px-Micro_Center_logo.svg.png" alt="Micro Center">
         <p>America's #1 destination for computer and tech enthusiasts since 1979. 29 locations and counting.</p>
         <div class="footer-socials">
-          <a href="#" class="social-link" aria-label="Twitter">&#120143;</a>
-          <a href="#" class="social-link" aria-label="Facebook">f</a>
-          <a href="#" class="social-link" aria-label="Instagram">&#9679;</a>
-          <a href="#" class="social-link" aria-label="YouTube">&#9654;</a>
-          <a href="#" class="social-link" aria-label="Discord">D</a>
+          <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-icon" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" aria-label="Instagram">○</a>
+          <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+          <a href="#" class="social-icon" aria-label="Discord">D</a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
-          <li><a href="#">Processors</a></li>
-          <li><a href="#">Graphics Cards</a></li>
+          <li><a href="#">Desktop Computers</a></li>
           <li><a href="#">Laptops</a></li>
-          <li><a href="#">Desktops</a></li>
+          <li><a href="#">Graphics Cards</a></li>
+          <li><a href="#">Processors</a></li>
           <li><a href="#">Monitors</a></li>
           <li><a href="#">Accessories</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4>Support</h4>
         <ul>
-          <li><a href="#">Custom PC Builder</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Order Status</a></li>
           <li><a href="#">Repairs</a></li>
-          <li><a href="#">Trade-In</a></li>
-          <li><a href="#">Business Solutions</a></li>
-          <li><a href="#">Apple Authorized</a></li>
+          <li><a href="#">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
+        <h4>About</h4>
         <ul>
-          <li><a href="#">Store Locator</a></li>
+          <li><a href="#">Our Story</a></li>
           <li><a href="#">Careers</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#">Store Locator</a></li>
           <li><a href="#">Blog</a></li>
+          <li><a href="#">Business Solutions</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Micro Center. All rights reserved.</p>
+      <p>© 2026 Micro Center. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -1518,216 +602,76 @@ section:last-of-type::after { display: none; }
 </footer>
 
 <script>
-// ===== SVG PC COMPONENT DEFINITIONS (for floating background) =====
-const svgComponents = [
-  `<svg viewBox="0 0 120 70" width="120" height="70"><rect x="5" y="10" width="110" height="45" rx="4"/><rect x="15" y="18" width="30" height="28" rx="2"/><rect x="55" y="18" width="30" height="28" rx="2"/><line x1="95" y1="18" x2="95" y2="46"/><line x1="100" y1="18" x2="100" y2="46"/><circle cx="97" cy="32" r="10"/></svg>`,
-  `<svg viewBox="0 0 80 80" width="80" height="80"><rect x="15" y="15" width="50" height="50" rx="4"/><rect x="25" y="25" width="30" height="30" rx="2"/><line x1="20" y1="10" x2="20" y2="15"/><line x1="30" y1="10" x2="30" y2="15"/><line x1="40" y1="10" x2="40" y2="15"/><line x1="50" y1="10" x2="50" y2="15"/><line x1="60" y1="10" x2="60" y2="15"/><line x1="20" y1="65" x2="20" y2="70"/><line x1="30" y1="65" x2="30" y2="70"/><line x1="40" y1="65" x2="40" y2="70"/><line x1="50" y1="65" x2="50" y2="70"/><line x1="60" y1="65" x2="60" y2="70"/></svg>`,
-  `<svg viewBox="0 0 120 35" width="120" height="35"><rect x="2" y="2" width="116" height="26" rx="3"/><rect x="10" y="6" width="12" height="18" rx="1"/><rect x="26" y="6" width="12" height="18" rx="1"/><rect x="42" y="6" width="12" height="18" rx="1"/><rect x="58" y="6" width="12" height="18" rx="1"/><rect x="74" y="6" width="12" height="18" rx="1"/><rect x="90" y="6" width="12" height="18" rx="1"/></svg>`,
-  `<svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="35"/><circle cx="40" cy="40" r="8"/><circle cx="40" cy="40" r="3"/><path d="M40 32 C35 20, 25 15, 20 22 C15 29, 25 35, 32 38"/><path d="M46 36 C55 25, 65 25, 62 35 C59 45, 50 40, 46 36"/><path d="M44 46 C50 58, 48 68, 38 63 C28 58, 35 48, 40 44"/><path d="M34 42 C22 48, 14 44, 18 34 C22 24, 32 32, 36 38"/></svg>`,
-  `<svg viewBox="0 0 100 100" width="100" height="100"><rect x="5" y="5" width="90" height="90" rx="4"/><rect x="15" y="15" width="25" height="25" rx="2"/><rect x="50" y="15" width="15" height="15" rx="1"/><rect x="70" y="15" width="15" height="15" rx="1"/><rect x="15" y="50" width="40" height="8" rx="1"/><rect x="15" y="62" width="40" height="8" rx="1"/><circle cx="72" cy="55" r="8"/></svg>`,
-  `<svg viewBox="0 0 70 50" width="70" height="50"><rect x="3" y="3" width="64" height="44" rx="4"/><rect x="10" y="10" width="24" height="16" rx="2"/><line x1="40" y1="12" x2="56" y2="12"/><line x1="40" y1="18" x2="56" y2="18"/><line x1="40" y1="24" x2="50" y2="24"/><circle cx="15" cy="38" r="3"/><circle cx="55" cy="38" r="3"/></svg>`,
-  `<svg viewBox="0 0 100 80" width="100" height="80"><rect x="5" y="5" width="90" height="55" rx="4"/><rect x="10" y="10" width="80" height="44" rx="2"/><rect x="38" y="60" width="24" height="8"/><rect x="30" y="68" width="40" height="4" rx="2"/></svg>`,
-  `<svg viewBox="0 0 130 45" width="130" height="45"><rect x="2" y="2" width="126" height="41" rx="6"/><rect x="8" y="8" width="8" height="8" rx="1.5"/><rect x="19" y="8" width="8" height="8" rx="1.5"/><rect x="30" y="8" width="8" height="8" rx="1.5"/><rect x="41" y="8" width="8" height="8" rx="1.5"/><rect x="8" y="19" width="12" height="8" rx="1.5"/><rect x="23" y="19" width="8" height="8" rx="1.5"/><rect x="34" y="19" width="8" height="8" rx="1.5"/><rect x="8" y="30" width="16" height="8" rx="1.5"/><rect x="27" y="30" width="68" height="8" rx="1.5"/></svg>`
-];
+/* ===== SCROLL REVEAL ===== */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-// ===== SPAWN FLOATING PC COMPONENTS =====
-const pcLayer = document.getElementById('pcComponents');
-const componentInstances = [];
-
-function spawnComponents() {
-  const positions = [
-    { x: 3, y: 8, size: 0.9, speed: 18, delay: 0 },
-    { x: 85, y: 5, size: 0.7, speed: 22, delay: 2 },
-    { x: 8, y: 30, size: 0.6, speed: 25, delay: 4 },
-    { x: 90, y: 35, size: 0.8, speed: 20, delay: 1 },
-    { x: 5, y: 55, size: 0.75, speed: 19, delay: 3 },
-    { x: 88, y: 58, size: 0.65, speed: 24, delay: 5 },
-    { x: 2, y: 78, size: 0.85, speed: 21, delay: 2 },
-    { x: 92, y: 80, size: 0.7, speed: 23, delay: 0 },
-    { x: 50, y: 15, size: 0.5, speed: 28, delay: 6 },
-    { x: 45, y: 45, size: 0.55, speed: 26, delay: 3 },
-    { x: 15, y: 90, size: 0.6, speed: 20, delay: 1 },
-    { x: 80, y: 92, size: 0.5, speed: 27, delay: 4 },
-    { x: 70, y: 65, size: 0.6, speed: 22, delay: 2 },
-    { x: 25, y: 70, size: 0.55, speed: 25, delay: 5 },
-  ];
-
-  positions.forEach((pos, i) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'pc-component';
-    wrapper.innerHTML = svgComponents[i % svgComponents.length];
-    wrapper.style.left = pos.x + '%';
-    wrapper.style.top = pos.y + '%';
-    wrapper.style.transform = `scale(${pos.size})`;
-    wrapper.style.animationDuration = pos.speed + 's';
-    wrapper.style.animationDelay = pos.delay + 's';
-    wrapper.style.opacity = (0.04 + Math.random() * 0.04).toFixed(3);
-    wrapper.dataset.parallaxSpeed = (0.02 + Math.random() * 0.04).toFixed(3);
-    pcLayer.appendChild(wrapper);
-    componentInstances.push(wrapper);
-  });
-}
-spawnComponents();
-
-// ===== PARALLAX SCROLL FOR FLOATING PC COMPONENTS =====
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const scrollY = window.scrollY;
-      componentInstances.forEach(comp => {
-        const speed = parseFloat(comp.dataset.parallaxSpeed);
-        const yOffset = scrollY * speed;
-        comp.style.transform = comp.style.transform.replace(/translateY\([^)]*\)/, '') + ` translateY(${-yOffset}px)`;
-      });
-      ticking = false;
-    });
-    ticking = true;
-  }
+/* ===== HAMBURGER ===== */
+const hamburger = document.getElementById('hamburger');
+const navCenter = document.getElementById('navCenter');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navCenter.classList.toggle('open');
 });
+navCenter.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navCenter.classList.remove('open');
+}));
 
-// ===== EXPLODING PC SCROLL ANIMATION =====
+/* ===== EXPLODING PC ANIMATION ===== */
 const explodeWrapper = document.getElementById('explodeWrapper');
-const explodeHero = document.getElementById('explodeHero');
 const scrollHint = document.getElementById('scrollHint');
+const heroCta = document.getElementById('heroCta');
 
-// Part configurations: [id, endX, endY, endZ, rotX, rotY, labelDelay]
-const partConfigs = [
-  { id: 'part-case',  tx: 0,    ty: 0,    tz: -80,  rx: 5,   ry: -8,  speed: 0.6 },
-  { id: 'part-gpu',   tx: -280, ty: 30,   tz: 120,  rx: 10,  ry: 15,  speed: 0.85 },
-  { id: 'part-cpu',   tx: 20,   ty: -200, tz: 100,  rx: -15, ry: 10,  speed: 0.9 },
-  { id: 'part-ram1',  tx: 200,  ty: -160, tz: 80,   rx: 5,   ry: -20, speed: 0.75 },
-  { id: 'part-ram2',  tx: 240,  ty: -100, tz: 60,   rx: 8,   ry: -15, speed: 0.8 },
-  { id: 'part-mobo',  tx: 30,   ty: 120,  tz: -120, rx: 20,  ry: 5,   speed: 0.7 },
-  { id: 'part-fan',   tx: -220, ty: 140,  tz: 60,   rx: -10, ry: 20,  speed: 0.82 },
-  { id: 'part-ssd',   tx: 220,  ty: 160,  tz: 40,   rx: 15,  ry: -10, speed: 0.88 },
-  { id: 'part-psu',   tx: 0,    ty: 230,  tz: -40,  rx: -5,  ry: 12,  speed: 0.65 },
+const parts = [
+  { id: 'part-case',  tx:0,    ty:0,    tz:-80,  rx:5,   ry:-8,   s:.6  },
+  { id: 'part-gpu',   tx:-260, ty:20,   tz:110,  rx:8,   ry:12,   s:.85 },
+  { id: 'part-cpu',   tx:15,   ty:-190, tz:90,   rx:-12, ry:8,    s:.9  },
+  { id: 'part-ram1',  tx:190,  ty:-150, tz:70,   rx:4,   ry:-18,  s:.75 },
+  { id: 'part-ram2',  tx:230,  ty:-95,  tz:50,   rx:6,   ry:-12,  s:.8  },
+  { id: 'part-mobo',  tx:20,   ty:110,  tz:-110, rx:18,  ry:4,    s:.7  },
+  { id: 'part-fan',   tx:-200, ty:130,  tz:50,   rx:-8,  ry:18,   s:.82 },
+  { id: 'part-ssd',   tx:200,  ty:150,  tz:35,   rx:12,  ry:-8,   s:.88 },
+  { id: 'part-psu',   tx:0,    ty:210,  tz:-35,  rx:-4,  ry:10,   s:.65 },
 ];
 
-// Easing function
-function easeOutCubic(t) {
-  return 1 - Math.pow(1 - t, 3);
-}
+function ease(t) { return 1 - Math.pow(1 - t, 3); }
 
-function updateExplode() {
-  const wrapperRect = explodeWrapper.getBoundingClientRect();
-  const wrapperTop = window.scrollY + wrapperRect.top;
-  const scrollRange = explodeWrapper.offsetHeight - window.innerHeight;
-  const rawProgress = (window.scrollY - wrapperTop) / scrollRange;
-  const progress = Math.max(0, Math.min(1, rawProgress));
+function tick() {
+  const rect = explodeWrapper.getBoundingClientRect();
+  const top = window.scrollY + rect.top;
+  const range = explodeWrapper.offsetHeight - window.innerHeight;
+  const raw = (window.scrollY - top) / range;
+  const progress = Math.max(0, Math.min(1, raw));
 
-  // Fade scroll hint
-  if (scrollHint) {
-    scrollHint.style.opacity = Math.max(0, 1 - progress * 5);
-  }
+  if (scrollHint) scrollHint.style.opacity = Math.max(0, 1 - progress * 5);
+  heroCta.classList.toggle('show', progress > 0.85);
 
-  // Update hero overlay opacity
-  const heroOverlay = explodeHero.querySelector('.hero-overlay');
-  if (heroOverlay) {
-    heroOverlay.style.opacity = Math.max(0, 1 - progress * 3);
-  }
-
-  partConfigs.forEach(config => {
-    const el = document.getElementById(config.id);
+  parts.forEach(cfg => {
+    const el = document.getElementById(cfg.id);
     if (!el) return;
-
-    const p = easeOutCubic(Math.min(1, progress * (1 / config.speed)));
-
-    // Calculate transform
-    const tx = config.tx * p;
-    const ty = config.ty * p;
-    const tz = config.tz * p;
-    const rx = config.rx * p;
-    const ry = config.ry * p;
-
-    // Base position (centered)
-    const baseTranslate = 'translate(-50%, -50%)';
-    el.style.transform = `${baseTranslate} translate3d(${tx}px, ${ty}px, ${tz}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-
-    // Fade in labels
+    const p = ease(Math.min(1, progress / cfg.s));
+    el.style.transform = `translate(-50%,-50%) translate3d(${cfg.tx * p}px,${cfg.ty * p}px,${cfg.tz * p}px) rotateX(${cfg.rx * p}deg) rotateY(${cfg.ry * p}deg)`;
     const label = el.querySelector('.explode-label');
-    if (label) {
-      const labelProgress = Math.max(0, (progress - 0.3) / 0.4);
-      label.style.opacity = Math.min(1, labelProgress);
-    }
+    if (label) label.style.opacity = Math.min(1, Math.max(0, (progress - 0.25) / 0.35));
   });
 }
 
-// Use scroll listener for smooth animation
-let explodeTicking = false;
+let raf = false;
 window.addEventListener('scroll', () => {
-  if (!explodeTicking) {
-    requestAnimationFrame(() => {
-      updateExplode();
-      explodeTicking = false;
-    });
-    explodeTicking = true;
-  }
+  if (!raf) { requestAnimationFrame(() => { tick(); raf = false; }); raf = true; }
 });
+tick();
 
-// Initial call
-updateExplode();
-
-// ===== NAVBAR SCROLL EFFECT =====
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-// ===== MOBILE MENU =====
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  menuToggle.classList.toggle('active');
-  navLinks.classList.toggle('open');
-});
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuToggle.classList.remove('active');
-    navLinks.classList.remove('open');
-  });
-});
-
-// ===== SCROLL REVEAL (IntersectionObserver) =====
-const revealElements = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealElements.forEach(el => revealObserver.observe(el));
-
-// ===== NEWSLETTER SUBSCRIBE =====
-function handleSubscribe(e) {
-  e.preventDefault();
-  const input = e.target.querySelector('input');
-  const btn = e.target.querySelector('button');
-  btn.textContent = 'Subscribed!';
-  btn.style.background = '#00C878';
-  input.value = '';
-  setTimeout(() => {
-    btn.textContent = 'Subscribe';
-    btn.style.background = '';
-  }, 3000);
-}
-
-// ===== ADD-TO-CART MICRO-INTERACTION =====
-document.querySelectorAll('.deal-btn').forEach(btn => {
+/* ===== ADD TO CART ===== */
+document.querySelectorAll('[data-deal]').forEach(btn => {
   btn.addEventListener('click', function() {
-    const original = this.innerHTML;
-    this.innerHTML = '&#10003; Added!';
-    this.style.background = '#00C878';
-    this.style.borderColor = '#00C878';
-    this.style.color = '#fff';
-    setTimeout(() => {
-      this.innerHTML = original;
-      this.style.background = '';
-      this.style.borderColor = '';
-      this.style.color = '';
-    }, 2000);
+    const orig = this.textContent;
+    this.textContent = '✓ Added!';
+    this.style.background = '#16a34a';
+    setTimeout(() => { this.textContent = orig; this.style.background = ''; }, 2000);
   });
 });
 </script>
